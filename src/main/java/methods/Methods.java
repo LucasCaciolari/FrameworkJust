@@ -12,8 +12,8 @@ public class Methods {
         try{
             element.sendKeys(texto);
         }catch (Exception e){
-            ReportCucumber.report(getBrowser(),"Não foi possível inserir o texto no elemento: " + element.getLocation(), true);
-            Assert.fail("Não foi possível inserir o texto no elemento: " + element.getLocation());
+            ReportCucumber.report(getBrowser(),"Não foi possível inserir o texto no elemento desejado. \n Erro: " + e.getMessage(), true);
+            Assert.fail("Não foi possível inserir o texto no elemento desejado. \n Erro: " + e.getMessage());
         }
     }
 
@@ -24,8 +24,8 @@ public class Methods {
             element.click();
         }catch (Exception e)
         {
-            ReportCucumber.report(getBrowser(),"Não foi possível clicar no elemento: " + element.getLocation(), true);
-            Assert.fail("Não foi possível clicar no elemento: " + element.getLocation());
+            ReportCucumber.report(getBrowser(),"Não foi possível clicar no elemento desejado. \n Erro: " + e.getMessage(), true);
+            Assert.fail("Não foi possível clicar no elemento desejado. \n Erro: " + e.getMessage());
         }
     }
 
@@ -34,8 +34,8 @@ public class Methods {
         try {
             texto = element.getText();
         } catch (Exception e) {
-            ReportCucumber.report(getBrowser(), "Não foi possível obter texto do elemento: " + element.getLocation(), true);
-            Assert.fail("Não foi obter texto do elemento: " + element.getLocation());
+            ReportCucumber.report(getBrowser(),"Não foi possível obter texto do elemento desejado. \n Erro: " + e.getMessage(), true);
+            Assert.fail("Não foi possível obter texto do elemento desejado. \n Erro: " + e.getMessage());
         }
 
         return texto;
@@ -47,6 +47,24 @@ public class Methods {
             return true;
         }catch (NoSuchElementException e){
             return false;
+        }
+    }
+
+    public static void acessar_iFrame(WebElement element){
+        try {
+            getBrowser().switchTo().frame(element);
+        }catch (Exception e){
+            ReportCucumber.report(getBrowser(),"Não foi acessar o iFrame desjado \n Erro: " + e.getMessage(), true);
+            Assert.fail("Não foi possível acessar o iFrame desejado \n Erro: " + e.getMessage());
+        }
+    }
+
+    public static void sair_iFrame(){
+        try {
+            getBrowser().switchTo().defaultContent();
+        }catch (Exception e){
+            ReportCucumber.report(getBrowser(),"Não foi possível retornar ao primeiro nível da pagina. \n Erro: " + e.getMessage(), true);
+            Assert.fail("Não foi possível retornar ao primeiro nível da pagina. \n Erro: " + e.getMessage());
         }
     }
 }
