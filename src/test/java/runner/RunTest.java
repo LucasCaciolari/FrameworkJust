@@ -15,7 +15,7 @@ import java.io.File;
 @CucumberOptions(
         features = {"features/Google.feature"},
         glue = {"stepdefinition", "hooks"},
-        tags = {},
+        tags = {"@All"},
         plugin = {"com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html",
                 "json:target/cucumber.json"}
 )

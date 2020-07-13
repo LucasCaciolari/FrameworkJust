@@ -31,6 +31,6 @@ public class PFGoogle {
 
     public void validarPesquisa(String texto)
     {
-        Assert.assertTrue((obterTexto(txtPesquisa).contains(texto)));
+        Assert.assertTrue((obterTexto(txtPesquisa).toLowerCase().contains(texto)));
     }
 }
