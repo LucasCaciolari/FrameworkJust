@@ -23,6 +23,7 @@ pipeline {
         stage('Report') {
                     steps {
                         cucumber '**/*.json'
+                         publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'target/cucumber-reports', reportFiles: 'report.html', reportName: 'Extent Report', reportTitles: 'ExtentReports'])
                     }
                 }
     }
