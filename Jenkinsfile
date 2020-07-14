@@ -21,10 +21,22 @@ pipeline {
             }
         }
         stage('Report') {
-                    steps {
-                        cucumber '**/*.json'
-                         publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'target/cucumber-reports', reportFiles: 'report.html', reportName: 'Extent Report', reportTitles: 'ExtentReports'])
-                    }
-                }
+            steps {
+                cucumber '**/*.json'
+            }
+        }
+    }
+    post {
+        always {
+            publishHTML([
+                allowMissing         : false,
+                alwaysLinkToLastBuild: false,
+                keepAll              : false,
+                reportDir            : 'target/cucumber-reports',
+                reportFiles          : 'report.html',
+                reportName           : 'BDD report',
+                reportTitles         : ''
+            ])
+        }
     }
 }
