@@ -20,11 +20,17 @@ pipeline {
                 }
             }
         }
-        stage('Report') {
+        stage('Cucumber Report') {
             steps {
                 cucumber '**/*.json'
             }
         }
+         stage('Living Documentation') {
+                    steps {
+                        svn 'https://subversion.assembla.com/svn/cucumber-json-files/trunk'
+                        livingDocs(featuresDir:'cukedoctor')
+                    }
+                }
     }
     post {
         always {
